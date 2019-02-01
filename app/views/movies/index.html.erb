@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  Movies from category: <%= @category.name %>
+</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Year</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= movie.title %></td>
+        <td><%= movie.year %></td>
+        <td><%= movie.category.name %></td>
+        <td><%= link_to 'Show', category_movie_path(@category, movie) %></td>
+        <td><%= link_to 'Edit', edit_category_movie_path(@category, movie) %></td>
+        <td><%= link_to 'Destroy', category_movie_path(@category, movie), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Movie', new_category_movie_path(@category) %>
